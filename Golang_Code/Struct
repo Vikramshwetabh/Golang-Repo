@@ -1,0 +1,72 @@
+package main
+
+import (
+	"fmt"
+)
+
+// struct embedding
+type customer struct {
+	name string
+	mob  string
+}
+
+// by the use of struct we can do oops in go
+type order struct { //intialising a struct
+	id       string
+	amount   float32
+	status   string
+	customer //struct is embedded in anohter struct just like inheritence
+}
+
+// func (o *order) changeStatus(status string) { //here we are making a method to change the status
+// 	// func(o *order) ->address of is passed here and o is a notation.This is just like member function in oops
+// 	o.status = status
+
+// }
+
+// // Creating a constructor
+// func newOrder(id string, amount float32, status string) *order {
+// 	myOrder := order{
+// 		id:     id,
+// 		amount: amount,
+// 		status: status,
+// 	}
+// 	return &myOrder
+// }
+
+func main() {
+	// newCustomer := customer{
+	// 	name: "Shwetabh",
+	// 	mob:  "8948938933",
+	// }
+	myOrder := order{ //creating an instance of a struct just like creating an object
+		id:     "1", //intialiing the value of data member of struch
+		amount: 50.32,
+		status: "delivered",
+		// customer: newCustomer, //here we inherited the new customer data
+		customer: customer{
+			name: "shwetabh",
+			mob:  "6898679755",
+		},
+	}
+
+	// myOrder2 := order{
+	// 	id:        "2",
+	// 	amount:    86.33,
+	// 	status:    "Paid",
+	// 	createdAt: time.Now(),
+	// }
+
+	// myOrder.createdAt = time.Now()
+	// myOrder.status = "failed" //->that change the status in struct 1
+	// fmt.Println("Printing 2nd object", myOrder2)
+	// fmt.Println("Printing Structure", myOrder)
+
+	// myOrder.changeStatus("Confirmed") //->method is called and at the address value is being changed
+
+	// fmt.Println(myOrder)
+
+	// fmt.Println(newOrder("1", 53.78, "delivered"))
+
+	fmt.Println(myOrder)
+}
